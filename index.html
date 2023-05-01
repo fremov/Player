@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Project</title>
     <link rel="stylesheet" href="src/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
 </head>
 
 <body class="bg-dark">
@@ -18,7 +19,7 @@
             <input type="submit" id="create_actor_butun" disabled value="Создать" class="btn btn-success">
             <hr>
             <div class="d-flex flex-column">
-                <label for="race">Раса:</label><select id="race" class="form-control w-25 mb-2">
+                <label for="race">Раса:</label><select id="race" class="form-control w-100 mb-2">
                 <option value="Норд">Норд</option>
                 <option value="Орк">Орк</option>
                 <option value="Аргонианин">Аргонианин</option>
@@ -30,6 +31,10 @@
                 <option value="Бретонец">Бретонец</option>
                 <option value="Альтмер">Альтмер</option>
             </select>
+                Уровень:
+                <label>
+                    <input type="number" class="form-control" value="" placeholder="Уровень:" id="set_lvl">
+                </label>
 
                 <label>
                     Перки:
@@ -73,13 +78,13 @@
                         <option class="text-danger" selected>Выберите амулет...</option>
                     </select>
                 </label>
-                <input type="submit" class="btn btn-success mt-3 me-auto w-100" value="Добавить" id="add_to_actor">
+                <input type="submit" class="btn btn-success mt-3 me-auto w-50" value="Добавить" id="add_to_actor">
+                <button id="download_build" class="mt-3 btn btn-info"  disabled >Скачать PDF</button>
             </div>
         </div>
 
         <div class="d-inline-block ms-5">
             <div class="container-fluid">
-                <span id="get_hp">Здоровье: </span> <br>
                 <span id="get_race">Раса: </span> <br>
                 <span id="get_lvl">Уровень: </span> <br>
                 <span id="get_weapon">Оружие: </span> <br>
@@ -88,12 +93,10 @@
                 <span id="get_armor_set">Набор брони: </span> <br>
                 <span id="get_spells">Заклинания: </span> <br>
                 <span id="get_perks">Перки: </span> <br>
-
             </div>
         </div>
     </div>
 </div>
-
 
 <script src="src/js/bootstrap.min.js"></script>
 <script src="src/script.js"></script>

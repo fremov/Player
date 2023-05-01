@@ -1,25 +1,14 @@
 class Actor {
-    constructor(health, lvl, race, amulet, armor_set, ring, weapon) {
-        this._health = health;
+    constructor(lvl, race, amulet, ring) {
         this._lvl = lvl;
         this._race = race;
         this._spells_list = [];
         this._perks_list = [];
         this._active_effects_list = [];
         this._amulet = amulet;
-        this._armor_set = armor_set;
+        this._armor_set = [];
         this._ring = ring;
-        this._weapon = weapon;
-        this.updateView();
-        // console.log(this.get_health());
-    }
-
-    get_health() {
-        return this._health;
-    }
-
-    set_health(value) {
-        this._health = value;
+        this._weapon = [];
         this.updateView();
     }
 
@@ -32,27 +21,32 @@ class Actor {
         this.updateView();
     }
 
+    set_lvl(lvl) {
+        this._lvl = lvl;
+        this.updateView();
+    }
     get_weapon() {
         return this._weapon;
     }
     set_weapon(weapon) {
-        this._weapon = weapon;
+        if (!this._weapon.includes(weapon)) {
+            this._weapon.push(weapon);
+        }
+        this.updateView();
+        return this._weapon;
     }
     set_armor_set(armor) {
-        this._armor_set = armor;
+        if (!this._armor_set.includes(armor)) {
+            this._armor_set.push(armor);
+        }
+        this.updateView();
+        return this._armor_set;
     }
     set_ring(ring) {
         this._ring = ring;
     }
     set_amulet(amulet) {
         this._amulet = amulet;
-    }
-    moveTo(x, y, z) {
-        console.log(`x: ${x}\ny: ${y}\nz: ${z}`)
-    }
-
-    equip(item) {
-
     }
 
     addSpell(spell_title) {
@@ -72,26 +66,14 @@ class Actor {
         return this._perks_list;
     }
 
-    // takeDamage(number) {
-    //     this.health = this.health - number;
-    //     console.log(this.health);
-    // }
-
-    _get_items() {
-        let path = 'Alteration.json';
-        let data = JSON.parse(path);
-        console.log(data);
-    }
-
     get_all_stats() {
-        console.log(`health: ${this._health}\nlvl: ${this._lvl}\nrace: ${this._race}\nperks: ${this._perks_list}\nspells: ${this._spells_list}`);
+        console.log(`lvl: ${this._lvl}\nrace: ${this._race}\nperks: ${this._perks_list}\nspells: ${this._spells_list}`);
 
     }
 
     updateView() {
-        document.getElementById("get_hp").textContent = `Health: ${this._health}`;
-        document.getElementById("get_race").textContent = `Race: ${this._race}`;
-        document.getElementById("get_lvl").textContent = `Level: ${this._lvl}`;
+        document.getElementById("get_race").textContent = `Раса: ${this._race}`;
+        document.getElementById("get_lvl").textContent = `Уровень: ${this._lvl}`;
         document.getElementById("get_perks").textContent = `Перки: ${this._perks_list}`;
         document.getElementById("get_spells").textContent = `Заклинания: ${this._spells_list}`;
         document.getElementById("get_weapon").textContent = `Оружие: ${this._weapon}`;
@@ -117,20 +99,21 @@ function loadSelectData(selectId, jsonDataUrl) {
 }
 
 // для оружия
-loadSelectData('set_weapon', 'src/json/data.json');
+loadSelectData('set_weapon', 'src/json/weapon.json');
 // для перков
 loadSelectData('set_perks', 'src/json/perks.json');
 // для спелов
 loadSelectData('set_spells', 'src/json/all_spells.json');
 // для брони
-loadSelectData('set_armor_set', 'src/json/data.json');
+loadSelectData('set_armor_set', 'src/json/armor.json');
 // для колец
-loadSelectData('set_ring', 'src/json/data.json');
+loadSelectData('set_ring', 'src/json/ring.json');
 // для амлулетов
-loadSelectData('set_amulet', 'src/json/data.json');
+loadSelectData('set_amulet', 'src/json/amulet.json');
 
 
 let race = document.getElementById('race');
+let lvl = document.getElementById('set_lvl');
 let spells = document.getElementById('set_spells');
 let perks = document.getElementById('set_perks');
 let weapon = document.getElementById('set_weapon');
@@ -139,9 +122,11 @@ let amulet = document.getElementById('set_amulet');
 let ring = document.getElementById('set_ring');
 let button = document.getElementById('add_to_actor');
 let Actor_name = document.getElementById('Actor_name');
+let download_button = document.getElementById('download_build');
+
+let player = new Actor(0, 'Не выбрано');
 
 
-let player = new Actor(0, 0, 'Выберите расу', "Выберите амулет", 'Выберите набор брони', 'Выберите кольцо', 'Выберите оружие');
 
 button.addEventListener('click', function () {
     player.set_weapon(weapon.value);
@@ -151,8 +136,8 @@ button.addEventListener('click', function () {
     player.set_race(race.value);
     player.add_perks(perks.value);
     player.addSpell(spells.value);
+    player.set_lvl(lvl.value);
     player.get_all_stats();
-})
-
+});
 
 
