@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Project</title>
+    <link rel="stylesheet" href="src/css/bootstrap.min.css">
+</head>
+
+<body class="bg-dark">
+
+
+<div class="container-fluid text-white" style="height: 900px">
+    <div class="d-flex h-100 justify-content-center align-items-center">
+
+        <div class="d-inline-block">
+            <h2>Actor</h2>
+            <input type="text" id="Actor" disabled value="" class="w-50" placeholder="Введите Имя персонажа">
+            <input type="submit" id="create_actor" disabled value="Создать" class="btn btn-success">
+            <hr>
+            <div class="d-block">
+                <label for="race">Раса:</label><select id="race" class="form-control w-25 mb-2">
+                    <option value="Норд">Норд</option>
+                    <option value="Орк">Орк</option>
+                    <option value="Аргонианин">Аргонианин</option>
+                    <option value="Каджит">Каджит</option>
+                    <option value="Имперец">Имперец</option>
+                    <option value="Данмер">Данмер</option>
+                    <option value="Босмер">Босмер</option>
+                    <option value="Редгард">Редгард</option>
+                    <option value="Бретонец">Бретонец</option>
+                    <option value="Альтмер">Альтмер</option>
+                </select>
+
+                <label>
+                    <select id="set_perks" class="form-control mt-3">
+                        <option class="text-danger" selected>Выберите перки...</option>
+                    </select>
+                </label>
+
+                <label>
+                    <select id="set_spells" class="form-control mt-3">
+                        <option class="text-danger" selected>Выберите заклинания...</option>
+                    </select>
+                </label>
+                <input type="submit" class="btn btn-success" value="Добавить" id="add_to_actor">
+
+
+                <!-- Создаем элемент select с использованием Bootstrap -->
+                <select id="set_weapon" class="form-control mt-3">
+                    <option class="text-danger" selected>Выберите предмет...</option>
+                </select>
+
+            </div>
+        </div>
+
+        <div class="d-inline-block ms-5">
+            <div class="container-fluid">
+                <span id="get_hp">Здоровье: </span> <br>
+                <span id="get_race">Раса: </span> <br>
+                <span id="get_lvl">Уровень: </span> <br>
+                <span id="get_weapon">Оружие: </span> <br>
+                <span id="get_ring">Кольцо: </span> <br>
+                <span id="get_amulet">Амулет: </span> <br>
+                <span id="get_armor_set">Набор брони: </span> <br>
+                <span id="get_spells">Заклинания: </span> <br>
+                <span id="get_perks">Перки: </span> <br>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="src/js/bootstrap.min.js"></script>
+<script src="src/script.js"></script>
+</body>
+
+</html>
