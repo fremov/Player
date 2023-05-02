@@ -29,14 +29,15 @@ class Actor {
         return this._weapon;
     }
     set_weapon(weapon) {
-        if (!this._weapon.includes(weapon)) {
+
+        if (!this._weapon.includes(weapon) && weapon !== 'Выберите оружие...') {
             this._weapon.push(weapon);
         }
         this.updateView();
         return this._weapon;
     }
     set_armor_set(armor) {
-        if (!this._armor_set.includes(armor)) {
+        if (!this._armor_set.includes(armor) && armor !== 'Выберите броню...') {
             this._armor_set.push(armor);
         }
         this.updateView();
@@ -50,7 +51,7 @@ class Actor {
     }
 
     addSpell(spell_title) {
-        if (!this._spells_list.includes(spell_title)) {
+        if (!this._spells_list.includes(spell_title) &&  spell_title !== 'Выберите заклинания...') {
             this._spells_list.push(spell_title);
         }
         this.updateView();
@@ -59,7 +60,7 @@ class Actor {
 
 
     add_perks(perk_title) {
-        if (!this._perks_list.includes(perk_title)) {
+        if (!this._perks_list.includes(perk_title) && perk_title !== 'Выберите перки...') {
             this._perks_list.push(perk_title);
         }
         this.updateView();
@@ -83,6 +84,8 @@ class Actor {
     }
 
 }
+
+
 
 function loadSelectData(selectId, jsonDataUrl) {
     const select = document.getElementById(selectId);
@@ -137,7 +140,7 @@ button.addEventListener('click', function () {
     player.add_perks(perks.value);
     player.addSpell(spells.value);
     player.set_lvl(lvl.value);
-    player.get_all_stats();
+    console.log(player);
 });
 
 
